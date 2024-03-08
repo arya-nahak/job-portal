@@ -36,14 +36,47 @@ exports.signup = async (req, res) => {
     });
   }
 };
+
 exports.signin = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username }).populate(
-      "roles",
+      "Role",
       "-__v"
     );
 
-    
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-  } catch (err) {}
+    const isPasswordValid = bycrypt.compareSync(
+      req.body.password,
+      user.password
+    );
+
+    if (!isPasswordValid) {
+      return res
+        .status(401)
+        .json({ accessToken: null, message: "Invalid password" });
+    }
+
+    const token = jwt.sign({ id: user.id }, config.secret, {
+      algorithm: "HS256",
+      allowInsecureKeySizes: true,
+      expiresIn: 86400, // 24 hours
+    });
+
+    const authorities = user.roles.map(
+      (role) => "ROLE_" + role.username.toUpperCase()
+    );
+
+    res.status(200).json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      accessToken: token,
+      roles: authorities,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
