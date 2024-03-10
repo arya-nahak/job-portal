@@ -1,13 +1,12 @@
 {
-  "name": "matx-react",
+  "name": "job-portal",
   "version": "4.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "ghp": "react-scripts build && gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -60,7 +59,6 @@
   "devDependencies": {
     "axios-mock-adapter": "^1.22.0",
     "cross-env": "^7.0.3",
-    "customize-cra": "^1.0.0",
-    "gh-pages": "^6.1.1"
+    "customize-cra": "^1.0.0"
   }
 }

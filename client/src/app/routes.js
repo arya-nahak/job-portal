@@ -22,7 +22,8 @@ const ForgotPassword = Loadable(lazy(() => import("app/views/sessions/ForgotPass
 // E-CHART PAGE
 const AppEchart = Loadable(lazy(() => import("app/views/charts/echarts/AppEchart")));
 // DASHBOARD PAGE
-const Analytics = Loadable(lazy(() => import("app/views/dashboard/Analytics")));
+// const Analytics = Loadable(lazy(() => import("app/views/dashboard/Analytics")));
+const Dashboard = Loadable(lazy(() => import("app/views/dashboard")));
 
 const routes = [
   {
@@ -34,7 +35,8 @@ const routes = [
     children: [
       ...materialRoutes,
       // dashboard route
-      { path: "/dashboard/default", element: <Analytics />, auth: authRoles.admin },
+      // { path: "/dashboard/default", element: <Analytics />, auth: authRoles.admin },
+      { path: "/dashboard", element: <Dashboard />, auth: authRoles.admin },
       // e-chart route
       { path: "/charts/echarts", element: <AppEchart />, auth: authRoles.editor }
     ]
@@ -53,7 +55,7 @@ const routes = [
   { path: "/applicant/signup", element: <ApplicantSignUp /> },
   { path: "/applicant/signin", element: <ApplicantSignIn /> },
 
-  { path: "/", element: <Navigate to="dashboard/default" /> },
+  { path: "/", element: <Navigate to="dashboard" /> },
   { path: "*", element: <NotFound /> }
 ];
 

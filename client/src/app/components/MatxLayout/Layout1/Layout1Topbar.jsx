@@ -102,9 +102,11 @@ const Layout1Topbar = () => {
     let { layout1Settings } = settings;
     let mode;
     if (isMdScreen) {
-      mode = layout1Settings.leftSidebar.mode === "close" ? "mobile" : "close";
+      mode = layout1Settings.leftSidebar.mode === "compact" ? "mobile" : "compact";
+      // mode = layout1Settings.leftSidebar.mode === "close" ? "mobile" : "close";
     } else {
-      mode = layout1Settings.leftSidebar.mode === "full" ? "close" : "full";
+      mode = layout1Settings.leftSidebar.mode === "full" ? "compact" : "full";
+      // mode = layout1Settings.leftSidebar.mode === "full" ? "close" : "full";
     }
     updateSidebarMode({ mode });
   };
@@ -117,7 +119,7 @@ const Layout1Topbar = () => {
             <Menu />
           </StyledIconButton>
 
-          <IconBox>
+          {/* <IconBox>
             <StyledIconButton>
               <MailOutline />
             </StyledIconButton>
@@ -129,17 +131,17 @@ const Layout1Topbar = () => {
             <StyledIconButton>
               <StarOutline />
             </StyledIconButton>
-          </IconBox>
+          </IconBox> */}
         </Box>
 
         <Box display="flex" alignItems="center">
-          <MatxSearchBox />
+          {/* <MatxSearchBox /> */}
 
           <NotificationProvider>
             <NotificationBar />
           </NotificationProvider>
 
-          <ShoppingCart />
+          {/* <ShoppingCart /> */}
 
           <MatxMenu
             menuButton={

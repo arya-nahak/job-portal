@@ -283,7 +283,7 @@ export default function Chatbox({ togglePopup }) {
         <TextField
           multiline
           fullWidth
-          rowsMax={4}
+          maxRows={4}
           value={message}
           placeholder="Type here ..."
           onKeyUp={sendMessageOnEnter}

@@ -1,5 +1,11 @@
 import { useEffect, useRef, memo } from "react";
-import { ThemeProvider, useMediaQuery, Box, styled, useTheme } from "@mui/material";
+import {
+  ThemeProvider,
+  useMediaQuery,
+  Box,
+  styled,
+  useTheme,
+} from "@mui/material";
 import Scrollbar from "react-perfect-scrollbar";
 import { Outlet } from "react-router-dom";
 
@@ -18,7 +24,7 @@ import { sidenavCompactWidth, sideNavWidth } from "app/utils/constant";
 // STYLED COMPONENTS
 const Layout1Root = styled(Box)(({ theme }) => ({
   display: "flex",
-  background: theme.palette.background.default
+  background: theme.palette.background.default,
 }));
 
 const ContentBox = styled(Box)(() => ({
@@ -27,7 +33,7 @@ const ContentBox = styled(Box)(() => ({
   overflowY: "auto",
   overflowX: "hidden",
   flexDirection: "column",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
 }));
 
 const StyledScrollBar = styled(Scrollbar)(() => ({
@@ -35,7 +41,7 @@ const StyledScrollBar = styled(Scrollbar)(() => ({
   position: "relative",
   display: "flex",
   flexGrow: "1",
-  flexDirection: "column"
+  flexDirection: "column",
 }));
 
 const LayoutContainer = styled(Box)(({ width, open }) => ({
@@ -48,7 +54,7 @@ const LayoutContainer = styled(Box)(({ width, open }) => ({
   position: "relative",
   overflow: "hidden",
   transition: "all 0.3s ease",
-  marginRight: open ? 50 : 0
+  marginRight: open ? 50 : 0,
 }));
 
 const Layout1 = () => {
@@ -56,7 +62,7 @@ const Layout1 = () => {
   const { layout1Settings, secondarySidebar } = settings;
   const topbarTheme = settings.themes[layout1Settings.topbar.theme];
   const {
-    leftSidebar: { mode: sidenavMode, show: showSidenav }
+    leftSidebar: { mode: sidenavMode, show: showSidenav },
   } = layout1Settings;
 
   const getSidenavWidth = () => {
@@ -117,7 +123,7 @@ const Layout1 = () => {
               </MatxSuspense>
             </Box>
 
-            {settings.footer.show && !settings.footer.fixed && <Footer />}
+            {/* {settings.footer.show && !settings.footer.fixed && <Footer />} */}
           </StyledScrollBar>
         )}
 
@@ -135,11 +141,11 @@ const Layout1 = () => {
               </MatxSuspense>
             </Box>
 
-            {settings.footer.show && !settings.footer.fixed && <Footer />}
+            {/* {settings.footer.show && !settings.footer.fixed && <Footer />} */}
           </ContentBox>
         )}
 
-        {settings.footer.show && settings.footer.fixed && <Footer />}
+        {/* {settings.footer.show && settings.footer.fixed && <Footer />} */}
       </LayoutContainer>
 
       {settings.secondarySidebar.show && <SecondarySidebar />}
