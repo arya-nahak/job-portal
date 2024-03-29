@@ -77,10 +77,10 @@ export default function RecruiterSignUp() {
   const [loading, setLoading] = useState(false);
   const [contactNumber, setContactNumber] = useState("");
   const handleFormSubmit = (values) => {
-    values.contactNumber = contactNumber;
     setLoading(true);
 
     try {
+      values.contactNumber = contactNumber;
       // register(values.email, values.name, values.password);
       // navigate("/");
       console.log(values);
@@ -183,6 +183,7 @@ export default function RecruiterSignUp() {
                         inputStyle={{ width: "100%", paddingLeft: "50px" }}
                         dropdownStyle={{ width: "338px" }}
                         country={"in"}
+                        countryCodeEditable={false}
                         value={contactNumber}
                         onChange={(phone) => {
                           setContactNumber(phone);
@@ -204,7 +205,7 @@ export default function RecruiterSignUp() {
                     <Paragraph>
                       Already have an account?
                       <NavLink
-                        to="/recruiter/signin"
+                        to="/session/signin"
                         style={{
                           color: theme.palette.primary.main,
                           marginLeft: 5,

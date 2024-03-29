@@ -1,7 +1,12 @@
 export const navigations = [
+  // import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
   // { name: "Dashboard", path: "/dashboard/default", icon: "dashboard" },
   { name: "Dashboard", path: "/dashboard", icon: "dashboard" },
-  { label: "Menu", type: "label" },
+  { name: "Add Job", path: "/add-job", icon: "add_box" },
+  { name: "My Jobs", path: "/my-job", icon: "history" },
+  { name: "Employees", path: "/employees", icon: "people" },
+  { name: "Application", path: "/applications", icon: "description" },
+  // { label: "Menu", type: "label" },
   // {
   //   name: "Session/Auth",
   //   icon: "security",

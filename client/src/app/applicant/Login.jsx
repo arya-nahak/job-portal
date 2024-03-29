@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Card, Checkbox, Grid, TextField, Box, styled, useTheme } from "@mui/material";
+import {
+  Card,
+  Checkbox,
+  Grid,
+  TextField,
+  Box,
+  styled,
+  useTheme,
+  Stack,
+  useMediaQuery,
+} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -10,14 +20,14 @@ import { Paragraph } from "app/components/Typography";
 
 // STYLED COMPONENTS
 const FlexBox = styled(Box)(() => ({
-  display: "flex"
+  display: "flex",
 }));
 
 const ContentBox = styled("div")(() => ({
   height: "100%",
   padding: "32px",
   position: "relative",
-  background: "rgba(0, 0, 0, 0.01)"
+  background: "rgba(0, 0, 0, 0.01)",
 }));
 
 const StyledRoot = styled("div")(() => ({
@@ -32,7 +42,7 @@ const StyledRoot = styled("div")(() => ({
     margin: "1rem",
     display: "flex",
     borderRadius: 12,
-    alignItems: "center"
+    alignItems: "center",
   },
 
   ".img-wrapper": {
@@ -41,15 +51,15 @@ const StyledRoot = styled("div")(() => ({
     display: "flex",
     padding: "2rem",
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 }));
 
 // initial login credentials
 const initialValues = {
   email: "jason@ui-lib.com",
   password: "dummyPass",
-  remember: true
+  remember: true,
 };
 
 // form field validation schema
@@ -57,7 +67,9 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be 6 character length")
     .required("Password is required!"),
-  email: Yup.string().email("Invalid Email address").required("Email is required!")
+  email: Yup.string()
+    .email("Invalid Email address")
+    .required("Email is required!"),
 });
 
 export default function Login() {
@@ -77,13 +89,19 @@ export default function Login() {
     }
   };
 
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <StyledRoot>
       <Card className="card">
         <Grid container>
           <Grid item sm={6} xs={12}>
             <div className="img-wrapper">
-              <img src="/assets/images/illustrations/dreamer.svg" width="100%" alt="" />
+              <img
+                src="/assets/images/illustrations/dreamer.svg"
+                width="100%"
+                alt=""
+              />
             </div>
           </Grid>
 
@@ -92,8 +110,16 @@ export default function Login() {
               <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={validationSchema}>
-                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+                validationSchema={validationSchema}
+              >
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                }) => (
                   <form onSubmit={handleSubmit}>
                     <TextField
                       fullWidth
@@ -140,7 +166,8 @@ export default function Login() {
 
                       <NavLink
                         to="/session/forgot-password"
-                        style={{ color: theme.palette.primary.main }}>
+                        style={{ color: theme.palette.primary.main }}
+                      >
                         Forgot password?
                       </NavLink>
                     </FlexBox>
@@ -150,17 +177,49 @@ export default function Login() {
                       color="primary"
                       loading={loading}
                       variant="contained"
-                      sx={{ my: 2 }}>
+                      sx={{ my: 2 }}
+                    >
                       Login
                     </LoadingButton>
 
                     <Paragraph>
                       Don't have an account?
-                      <NavLink
-                        to="/applicant/signup"
-                        style={{ color: theme.palette.primary.main, marginLeft: 5 }}>
-                        Register
-                      </NavLink>
+                      <Stack
+                        spacing={1}
+                        direction={"row"}
+                        gap={1}
+                        sx={{ mt: 1 }}
+                      >
+                        <NavLink
+                          to="/applicant/signup"
+                          style={{
+                            color: theme.palette.primary.main,
+                            border: "1px solid transparent",
+                            color: "white",
+                            borderRadius: "3px",
+                            padding: "7px",
+                            lineHeight: 1.75,
+                            backgroundColor: "green",
+                          }}
+                        >
+                          {matches ? "SignUp as a Applicant" : "Applicant"}
+                        </NavLink>
+                        <NavLink
+                          to="/recruiter/signup"
+                          style={{
+                            color: theme.palette.primary.main,
+                            border: "1px solid transparent",
+                            // marginLeft:5,
+                            lineHeight: 1.75,
+                            color: "white",
+                            borderRadius: "3px",
+                            padding: "7px",
+                            backgroundColor: "green",
+                          }}
+                        >
+                          {matches ? "SignUp as a Recruiter":"Recruiter"}
+                        </NavLink>
+                      </Stack>
                     </Paragraph>
                   </form>
                 )}

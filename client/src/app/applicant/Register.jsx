@@ -485,7 +485,7 @@ export default function ApplicantSignUp() {
                     <Paragraph>
                       Already have an account?
                       <NavLink
-                        to="/applicant/signin"
+                        to="/session/signin"
                         style={{
                           color: theme.palette.primary.main,
                           marginLeft: 5,
